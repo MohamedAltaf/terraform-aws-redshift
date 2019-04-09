@@ -3,7 +3,7 @@ resource "aws_vpc" "vpc" {
   instance_tenancy     = "default"
   enable_dns_hostnames = true
 
-  tags = "${merge(var.tags, map("Name", "${var.AppName}:net:${var.AppID}:vpc:${var.env_name}"), map("CitiSystemsInventory", "CsiAppId=${var.AppID}|BillingProfileNumber=${var.BillingID}"), map("CTIResourceAudit", "InstantiatedBy=CFN|StartDateTime=NA|PublicRouted=No"), map("BusinessAudit", "InstalledSoftware=NA|ExpiryDateTime=NA|Environment=${var.env_name}"))}"
+  tags = "${merge(var.tags, map("Name", "${var.env_name}-vpc"))}"
 }
 
 resource "aws_security_group" "vms_security_group" {
@@ -26,4 +26,32 @@ resource "aws_security_group" "vms_security_group" {
   }
 
   tags = "${merge(var.tags, map("Name", "${var.env_name}-vms-security-group"))}"
+}
+
+# Private Subnet ===============================================================
+
+resource "aws_route_table" "private_route_table" {
+  vpc_id = "${aws_vpc.vpc.id}"
+
+  tags = "${merge(var.tags, map("Name", "${var.env_name}-private_route_table"))}"
+}
+
+# S3 Endpoint===============================================================
+
+resource "aws_vpc_endpoint" "s3_endpoint" {
+    vpc_id = "${aws_vpc.vpc.id}"
+    service_name = "com.amazonaws.${var.region}.s3"
+    route_table_ids = ["${aws_route_table.private_route_table.id}"]
+    policy = <<POLICY
+{
+    "Statement": [
+        {
+            "Action": "s3:*",
+            "Effect": "Allow",
+            "Resource": "*",
+            "Principal": "*"
+        }
+    ]
+}
+POLICY
 }
