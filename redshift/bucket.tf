@@ -6,4 +6,3 @@ resource "aws_s3_bucket" "redshift_bucket" {
 
   tags = "${merge(var.tags, map("Name", "RedShift S3 Bucket"))}"
   }
-}
