@@ -10,7 +10,7 @@ resource "aws_subnet" "redshift_subnets" {
 }
 
 resource "aws_redshift_subnet_group" "redshift_subnet_group" {
-  name        = "${var.env_name}_redshift-subnet-group"
+  name        = "${var.env_name}-redshift-subnet-group"
   description = "RedShift Subnet Group"
 
   subnet_ids = ["${aws_subnet.redshift_subnets.*.id}"]
@@ -22,7 +22,7 @@ resource "aws_redshift_subnet_group" "redshift_subnet_group" {
 # RedShift Security Group ===============================================================
 
 resource "aws_security_group" "redshift_security_group" {
-  name        = "${var.env_name}_redshift-security-group"
+  name        = "${var.env_name}-redshift-security-group"
   description = "RedShift Security Group"
   vpc_id      = "${var.vpc_id}"
 
@@ -64,7 +64,7 @@ resource "aws_redshift_cluster" "redshift" {
   publicly_accessible = "${var.publicly_accessible}"
 
   # IAM Roles
-  iam_roles = "${aws_iam_instance_profile.redshift_role.name}"
+  iam_roles = "[${aws_iam_instance_profile.redshift_role.name}"]
 
   # Encryption
   encrypted  = "${var.encrypted}"
