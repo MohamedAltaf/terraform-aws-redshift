@@ -17,7 +17,6 @@ resource "aws_redshift_subnet_group" "redshift_subnet_group" {
 
   tags = "${merge(var.tags, map("Name", "${var.env_name}-redshift-subnet-group"))}"
 
-  count = "${var.redshift_subnets[count.index] > 0 ? 1 : 0}"
 }
 
 # RedShift Security Group ===============================================================
@@ -43,7 +42,6 @@ resource "aws_security_group" "redshift_security_group" {
 
   tags = "${merge(var.tags, map("Name", "${var.env_name}-redshift-security-group"))}"
 
-  count = "${var.redshift_subnets[count.index] > 0 ? 1 : 0}"
 }
 
 # RedShift CLuster ===============================================================
