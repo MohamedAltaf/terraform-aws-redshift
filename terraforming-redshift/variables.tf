@@ -15,6 +15,12 @@ variable "vpc_cidr" {
   default = ""
 }
 
+variable "redshift_subnets" {
+  type        = "list"
+  description = "A list of redshift subnets"
+  default     = []
+}
+
 variable "cluster_master_username" {}
 
 variable "cluster_master_password" {}
