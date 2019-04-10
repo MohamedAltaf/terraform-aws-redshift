@@ -64,7 +64,7 @@ resource "aws_redshift_cluster" "redshift" {
   publicly_accessible = "${var.publicly_accessible}"
 
   # IAM Roles
-  iam_roles = "[${aws_iam_instance_profile.redshift_role.name}"]
+  iam_roles = "${aws_iam_instance_profile.redshift_role.name}"
 
   # Encryption
   encrypted  = "${var.encrypted}"
