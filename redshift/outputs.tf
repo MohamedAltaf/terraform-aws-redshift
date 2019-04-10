@@ -39,6 +39,6 @@ output "redshift_cluster_endpoint" {
 }
 
 output "bucket" {
-  description = S3 bucket arn
+  description = "S3 bucket arn"
   value = "${element(concat(aws_s3_bucket.redshift_bucket.*.bucket, list("")), 0)}"
 }
