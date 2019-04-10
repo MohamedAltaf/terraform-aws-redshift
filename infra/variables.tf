@@ -1,7 +1,3 @@
-variable "access_key" {}
-
-variable "secret_key" {}
-
 variable "env_name" {
   type = "string"
 }
