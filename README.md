@@ -24,12 +24,6 @@ Perform the following steps:
   - [redshift](terraforming-redshift/)
 
 0. Create [`terraform.tfvars`](/README.md#var-file) file
-0. Run terraform apply.
-  ```bash
-  terraform init
-  terraform plan -out=plan
-  terraform apply plan
-  ```
 
 ### Var File
 
@@ -61,6 +55,13 @@ cluster_master_password = "password"
 - redshift_subnets: **(required)** Subnets to deploy redshift cluster.
 - cluster_master_username: **(required)** username for redshift cluster.
 - cluster_master_password: **(required)** password for redshift cluster.
+
+0. Run terraform apply.
+  ```bash
+  terraform init
+  terraform plan -out=plan
+  terraform apply plan
+  ```
 
 ## Notes
 
