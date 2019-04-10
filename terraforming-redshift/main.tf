@@ -44,8 +44,8 @@ module "redshift" {
   env_name                = "${var.env_name}"
   vpc_cidr                = "${var.vpc_cidr}"
   vpc_id                  = "${module.infra.vpc_id}"
-  subnets                 = ["${module.redshift.redshift_subnets}"]
-  vpc_security_group_ids  = ["${module.redshift.redshift_security_group}"]
+  redshift_subnets        = ["${module.redshift.redshift_subnets}"]
+  redshift_security_group  = ["${module.redshift.redshift_security_group}"]
 
   tags                    = "${local.actual_tags}"
 
