@@ -15,7 +15,7 @@ resource "aws_iam_role" "redshift_role" {
         "Effect": "Allow",
         "Action": ["s3:ListBucket"],
         "Resource": [
-          "${redshift_bucket_arn}"
+          "${aws_s3_bucket.redshift_bucket.arn}"
         ]
       },
       {
@@ -26,7 +26,7 @@ resource "aws_iam_role" "redshift_role" {
           "s3:DeleteObject"
         ],
         "Resource": [
-          "${redshift_bucket_arn}/*"
+          "${aws_s3_bucket.redshift_bucket.arn}/*"
         ]
       }
     ]
