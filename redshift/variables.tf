@@ -28,6 +28,10 @@ variable "cluster_number_of_nodes" {
   default     = 2
 }
 
+variable "cluster_database_name" {
+  description = "The name of the database to create"
+}
+
 variable "cluster_master_username" {}
 
 variable "cluster_master_password" {}
