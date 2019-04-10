@@ -16,7 +16,7 @@ Note: This is not an exhaustive list of resources created, this will vary depend
 brew update
 brew install terraform
 ```
-## Deploying Ops Manager
+## Deploying RedShift Cluster
 
 Perform the following steps:
 
