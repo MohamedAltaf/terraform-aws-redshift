@@ -28,7 +28,7 @@ output "redshift_subnets" {
   value       = ["${aws_subnet.redshift_subnets.*.id}"]
 }
 
-output "redshift_security_group" {
+output "vpc_security_group_ids" {
   description = "RedShift Security Group"
   value       = "${aws_security_group.redshift_security_group.*.id}"
 }
