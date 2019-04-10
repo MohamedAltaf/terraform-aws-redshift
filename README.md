@@ -20,10 +20,10 @@ brew install terraform
 
 Perform the following steps:
 
-0. `cd` into the proper directory:
+ `cd` into the proper directory:
   - [redshift](terraforming-redshift/)
 
-0. Create [`terraform.tfvars`](/README.md#var-file) file
+ Create [`terraform.tfvars`](/README.md#var-file) file
 
 ### Var File
 
@@ -56,7 +56,7 @@ cluster_master_password = "password"
 - cluster_master_username: **(required)** username for redshift cluster.
 - cluster_master_password: **(required)** password for redshift cluster.
 
-0. Run terraform apply.
+ Run terraform apply.
   ```bash
   terraform init
   terraform plan -out=plan
