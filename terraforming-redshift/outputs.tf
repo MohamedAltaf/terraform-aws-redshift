@@ -8,6 +8,6 @@ output "redshift_cluster_endpoint" {
 }
 
 output "bucket" {
-  description = S3 bucket arn
+  description = "S3 bucket arn"
   value = "${module.redshift.bucket}"
 }
