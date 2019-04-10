@@ -17,10 +17,12 @@ variable "vpc_id" {
 
 variable "cluster_identifier" {
   description = "Custom name of the cluster"
+  default     = "redshift-cluster"
 }
 
 variable "cluster_node_type" {
   description = "Node Type of Redshift cluster"
+  default     = "dc1.large"
 }
 
 variable "cluster_number_of_nodes" {
@@ -30,6 +32,7 @@ variable "cluster_number_of_nodes" {
 
 variable "cluster_database_name" {
   description = "The name of the database to create"
+  default     = "dev"
 }
 
 variable "cluster_master_username" {}
