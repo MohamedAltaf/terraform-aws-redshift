@@ -33,12 +33,12 @@ module "redshift" {
   source                  = "../redshift"
 
   cluster_identifier      = "${module.redshift.redshift_cluster_identifier}"
-  node_type               = "${module.redshift.redshift_cluster_node_type}"
-  number_of_nodes         = "${module.redshift.redshift_cluster_number_of_nodes}"
+  cluster_node_type       = "${module.redshift.redshift_cluster_node_type}"
+  cluster_number_of_nodes = "${module.redshift.redshift_cluster_number_of_nodes}"
 
-  database_name           = "${module.redshift.redshift_cluster_database_name}"
-  master_username         = "${var.cluster_master_username}"
-  master_password         = "${var.cluster_master_password}"
+  cluster_database_name   = "${module.redshift.redshift_cluster_database_name}"
+  cluster_master_username = "${var.cluster_master_username}"
+  cluster_master_password = "${var.cluster_master_password}"
 
   availability_zones      = "${var.availability_zones}"
   env_name                = "${var.env_name}"
