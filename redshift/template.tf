@@ -10,7 +10,7 @@ resource "aws_subnet" "redshift_subnets" {
 }
 
 resource "aws_redshift_subnet_group" "redshift_subnet_group" {
-  name        = "${var.env_name}_redshift_subnet_group"
+  name        = "${var.env_name}_redshift-subnet-group"
   description = "RedShift Subnet Group"
 
   subnet_ids = ["${aws_subnet.redshift_subnets.*.id}"]
@@ -22,7 +22,7 @@ resource "aws_redshift_subnet_group" "redshift_subnet_group" {
 # RedShift Security Group ===============================================================
 
 resource "aws_security_group" "redshift_security_group" {
-  name        = "redshift_security_group"
+  name        = "${var.env_name}_redshift-security-group"
   description = "RedShift Security Group"
   vpc_id      = "${var.vpc_id}"
 
