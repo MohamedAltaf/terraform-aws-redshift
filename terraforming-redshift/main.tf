@@ -32,11 +32,11 @@ module "infra" {
 module "redshift" {
   source                  = "../redshift"
 
-  cluster_identifier      = "${module.redshift.redshift_cluster_identifier}"
-  cluster_node_type       = "${module.redshift.redshift_cluster_node_type}"
-  cluster_number_of_nodes = "${module.redshift.redshift_cluster_number_of_nodes}"
+  cluster_identifier      = "${var.cluster_identifier}"
+  cluster_node_type       = "${var.cluster_node_type}"
+  cluster_number_of_nodes = "${var.cluster_number_of_nodes}"
 
-  cluster_database_name   = "${module.redshift.redshift_cluster_database_name}"
+  cluster_database_name   = "${var.cluster_database_name}"
   cluster_master_username = "${var.cluster_master_username}"
   cluster_master_password = "${var.cluster_master_password}"
 
