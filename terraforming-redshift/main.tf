@@ -8,14 +8,22 @@ terraform {
   required_version = "< 0.12.0"
 }
 
+locals {
+
+  default_tags = {
+    Environment = "${var.env_name}"
+    Application = "Cloud Foundry"
+  }
+
+  actual_tags = "${merge(var.tags, local.default_tags)}"
+}
+
 module "infra" {
   source              = "../infra"
 
   region              = "${var.region}"
   env_name            = "${var.env_name}"
   availability_zones  = "${var.availability_zones}"
-  vpc_id              = "${module.infra.vpc_id}"
-  private_route_table_id = "${module.infra.private_route_table_id}"
   vpc_cidr            = "${var.vpc_cidr}"
 
   tags                = "${local.actual_tags}"
@@ -32,7 +40,13 @@ module "redshift" {
   cluster_master_username = "${var.cluster_master_username}"
   cluster_master_password = "${var.cluster_master_password}"
 
+  availability_zones      = "${var.availability_zones}"
+  env_name                = "${var.env_name}"
+  vpc_cidr                = "${var.vpc_cidr}"
+  vpc_id                  = "${module.infra.vpc_id}"
   subnets                 = ["${module.redshift.redshift_subnets}"]
   vpc_security_group_ids  = ["${module.redshift.redshift_security_group}"]
+
+  tags                    = "${local.actual_tags}"
 
 }
