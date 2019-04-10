@@ -12,7 +12,7 @@ locals {
 
   default_tags = {
     Environment = "${var.env_name}"
-    Application = "Cloud Foundry"
+    Application = "RedShift Cluster"
   }
 
   actual_tags = "${merge(var.tags, local.default_tags)}"
